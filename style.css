@@ -86,3 +86,14 @@ h2 {
     display: block;
     margin-top: 10px;
 }
+
+#clearBtn {
+    background-color: #3a3a55;
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+#clearBtn:hover {
+    background-color: #ff4757;
+    transform: scale(1.05);
+}

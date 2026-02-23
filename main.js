@@ -25,3 +25,13 @@ calculateBtn.addEventListener('click', () => {
     resultDisplay.textContent = formatteResult;
     // Resultado formatado na tela
 });
+
+const clearBtn = document.getElementById('clearBtn');
+
+clearBtn.addEventListener('click', () => {
+    document.getElementById('monthlyContribution').value = '';
+    document.getElementById('interestRate').value = '';
+    document.getElementById('months').value = '';
+
+    resultDisplay.textContent = 'R$ 0,00';
+});
