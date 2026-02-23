@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Simulador Financeiro</h1>
+    <p>Roadmap: Do Zero ao Dux</p>
+
+    <div>
+        <label for="monthlyContribution">Aporte Mensal (R$):</label>
+        <input type="number" id="monthlyContribution" placeholder="Ex: 800">
+    </div>
+    <br>
+    <div>
+        <label for="interestRate">Taxa de Juros Mensal (%):</label>
+        <input type="number" id="interestRate" placeholder="Ex: 1">
+    </div>
+    <br>
+    <div>
+        <label for="months">Tempo (Meses):</label>
+        <input type="number" id="months" placeholder="Ex: 12">
+    </div>
+    <br>
+
+    <button id="calculateBtn">Simular</button>
+
+    <h2>Resultado Esperado: <span id="resultValue">R$ 0,00</span></h2>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
