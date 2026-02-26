@@ -9,6 +9,7 @@ Este projeto foi desenvolvido para consolidar conhecimentos práticos em **JavaS
 * **HTML5 & CSS3:** Estruturação semântica e estilização moderna com interface responsiva.
 * **JavaScript (ES6+):** Lógica matemática de juros compostos utilizando laços de repetição (`for`).
 * **Consumo de API (Fetch/Async/Await):** Integração real com a API pública do Banco Central do Brasil (SGS) para capturar a taxa Selic anual atualizada e convertê-la matematicamente para a taxa mensal correspondente.
+* **Análise Comparativa Dinâmica:** Implementação de lógica para renderização simultânea de múltiplos cenários de investimento (Taxa Personalizada, Tesouro Selic e Poupança). O JavaScript manipula o DOM de forma assíncrona para calcular e exibir os três resultados lado a lado, evidenciando o impacto dos juros compostos no longo prazo.
 * **Tratamento de Erros:** Implementação de blocos `try/catch` para garantir a resiliência da aplicação caso o servidor do governo fique indisponível.
 * **Modularização:** Separação de responsabilidades utilizando `import` e `export` para isolar regras de negócio (`calculator.js`) e requisições de rede (`api.js`) da manipulação de tela (`main.js`).
 

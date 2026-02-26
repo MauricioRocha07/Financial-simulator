@@ -3,27 +3,37 @@ import { fetchSelicRate } from "./api.js";
 
 // Botão "Simular"
 const calculateBtn = document.getElementById('calculateBtn');
-const resultDisplay = document.getElementById('resultValue');
+const resultManual = document.getElementById('resultManual');
+const resultSelic = document.getElementById('resultSelic');
+const resultSavings = document.getElementById('resultSavings');
 
 // Espera o click no botão
-calculateBtn.addEventListener('click', () => {
+calculateBtn.addEventListener('click', async () => {
 
     // Pega os numeros digitados pelo usuario
-    const monthylyContribution = Number(document.getElementById('monthlyContribution').value);
-    const interestRate = Number(document.getElementById('interestRate').value);
+    const monthlyContribution = Number(document.getElementById('monthlyContribution').value);
     const months = Number(document.getElementById('months').value);
+    const manualRate = Number(document.getElementById('interestRate').value);
     // O Number() para garantir que o JS entenda como numero
 
-    const finalAmount = calculateCompoundInterest(monthylyContribution, interestRate, months);
+    const selicAnual = await fetchSelicRate();
+    const selicMensal = (Math.pow(1 + selicAnual /100, 1 / 12) -1) * 100;
+    // Busca a Selic
+
+    const finalManual = calculateCompoundInterest(monthlyContribution, manualRate, months);
+    const finalSelic = calculateCompoundInterest(monthlyContribution, selicMensal, months);
+    const finalSavings = calculateCompoundInterest(monthlyContribution, 0.5, months);
     // Chama a função e guarda o resultado
 
-    const formattedResult = finalAmount.toLocaleString('pt-BR', {
+    const formatCurrency = (value) => value.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
     });
     // Formata o numero para a moeda BRL
 
-    resultDisplay.textContent = formattedResult;
+    resultManual.textContent = formatCurrency(finalManual);
+    resultSelic.textContent = formatCurrency(finalSelic);
+    resultSavings.textContent = formatCurrency(finalSavings);
     // Resultado formatado na tela
 });
 
@@ -34,7 +44,9 @@ clearBtn.addEventListener('click', () => {
     document.getElementById('interestRate').value = '';
     document.getElementById('months').value = '';
 
-    resultDisplay.textContent = 'R$ 0,00';
+    resultManual.textContent = 'R$ 0,00';
+    resultSelic.textContent = 'R$0,00';
+    resultSavings.textContent = 'R$0,00';
 });
 
 // Novo botão Selic

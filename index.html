@@ -29,9 +29,30 @@
 
     <button id="calculateBtn">Simular</button>
     <button id="clearBtn">Limpar</button>
+    <br>
+    
+    <h3>Comparativo de Rendimento:</h3>
 
-    <h2>Resultado Esperado: <span id="resultValue">R$ 0,00</span></h2>
+    <div class="results-container" style="display: flex; gap: 15px; justify-content: space-between; text-align: center;">
 
+        <div style="flex: 1; padding: 15px; border: 1px solid #ccc; border-radius: 8px;">
+            <h4 style="margin-bottom: 5px;">Sua Simulação</h4>
+            <p style="font-size: 12px; color: #555;">Taxa Informada</p>
+            <h2 id="resultManual" style="color: #2c3e50;">R$0,00</h2>
+        </div>
+
+        <div style="flex: 1; padding: 15px; border: 2px solid #27ae60; border-radius: 8px; background-color: #f9fff9;">
+            <h4 style="margin-bottom: 5px; color: #27ae60;">Tesouro Selic</h4>
+            <p style="font-size: 12px; color: #555;">Rendimento Real</p>
+            <h2 id="resultSelic" style="color: #27ae60;">R$0,00</h2>
+        </div>
+
+        <div style="flex: 1; padding: 15px; border: 1px solid #ccc; border-radius: 8px; opacity: 0.8;">
+            <h4 style="margin-bottom: 5px;">Poupança</h4>
+            <p style="font-size:  12px; color: #555;">0,5% ao mês</p>
+            <h2 id="resultSavings" style="color: #c0392b;">R$0,00</h2>
+        </div>
+    </div>
     <script type="module" src="main.js"></script>
 </body>
 </html>
