@@ -70,23 +70,6 @@ button:hover {
     transform: scale(1.05);
 }
 
-h2 {
-    margin-top: 50px;
-    font-weight: normal;
-    background-color: #2a2a40;
-    padding: 20px 40px;
-    border-radius: 10px;
-    border-left: 5px solid #00ea90;
-}
-
-#resultValue {
-    color: #00ea90;
-    font-weight: bold;
-    font-size: 1.5em;
-    display: block;
-    margin-top: 10px;
-}
-
 #clearBtn {
     background-color: #3a3a55;
     color: #ffffff;
@@ -96,4 +79,79 @@ h2 {
 #clearBtn:hover {
     background-color: #ff4757;
     transform: scale(1.05);
+}
+
+.results-container {
+    display: flex;
+    flex-direction: row; /* Força a ficar lado a lado anulando a div */
+    flex-wrap: wrap; /* A responsividade das caixas estava ruim e coloquei o wrap para melhorar */
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px; /* Limita a largura */
+    margin-top: 20px;
+}
+
+/* Base de todos os cartões */
+.card {
+    flex: 1; /* Para deixar todas elas no mesmo tamanho */
+    min-width: 250px; /* Para impedir a caixa de ficar muito pequena */
+    background-color: #2a2a40;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #3a3a55;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ajuste de texto no cartão */
+.card h4 {
+    color: #cccccc;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.card p {
+    font-size: 12px;
+    color: #888899;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Caixa Manual */
+.card-manual {
+    border: 1px solid #00d2ff;
+}
+#resultManual {
+    color: #00d2ff;
+}
+
+/* Caixa Selic */
+.card-selic {
+    border: 2px solid #00ea90;
+    background-color: #22333b;
+}
+.card-selic h4 {
+    color: #00ea90;
+}
+#resultSelic {
+    color: #00ea90;
+}
+
+/* Caixa Poupança */
+.card-savings {
+    opacity: 0.6;
+}
+#resultSavings {
+    color: #ff4757;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
 }
