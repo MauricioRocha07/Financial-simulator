@@ -12,6 +12,7 @@ Este projeto foi desenvolvido para consolidar conhecimentos práticos em **JavaS
 * **Análise Comparativa Dinâmica:** Implementação de lógica para renderização simultânea de múltiplos cenários de investimento (Taxa Personalizada, Tesouro Selic e Poupança). O JavaScript manipula o DOM de forma assíncrona para calcular e exibir os três resultados lado a lado, evidenciando o impacto dos juros compostos no longo prazo.
 * **Tratamento de Erros:** Implementação de blocos `try/catch` para garantir a resiliência da aplicação caso o servidor do governo fique indisponível.
 * **Modularização:** Separação de responsabilidades utilizando `import` e `export` para isolar regras de negócio (`calculator.js`) e requisições de rede (`api.js`) da manipulação de tela (`main.js`).
+* **UI/UX e Visualização de Dados:** Refatoração da interface isolando a estrutura (HTML) da estilização (CSS) com design responsivo. Integração com a biblioteca Chart.js para renderizar gráficos de barras dinâmicos, proporcionando uma comparação visual clara entre os cenários de investimento.
 
 ## ⚙️ Como funciona
 

@@ -6,6 +6,7 @@ const calculateBtn = document.getElementById('calculateBtn');
 const resultManual = document.getElementById('resultManual');
 const resultSelic = document.getElementById('resultSelic');
 const resultSavings = document.getElementById('resultSavings');
+let myChart = null;
 
 // Espera o click no botão
 calculateBtn.addEventListener('click', async () => {
@@ -35,6 +36,66 @@ calculateBtn.addEventListener('click', async () => {
     resultSelic.textContent = formatCurrency(finalSelic);
     resultSavings.textContent = formatCurrency(finalSavings);
     // Resultado formatado na tela
+
+    // --- Inicio Bloco Grafico ---
+    if (myChart) {
+        myChart.destroy();
+    }
+    // Se já tiver um grafico e destroi antes de criar um novo
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    // Pega o elemento no HTML
+
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Sua Simulação', 'Tesouro Selic', 'Poupança'],
+            datasets: [{
+                label: 'Valor Final Bruto',
+                data: [finalManual, finalSelic, finalSavings],
+                backgroundColor: [
+                    'rgba(0, 210, 255, 0.7)',
+                    'rgba(0, 234, 144, 0.7)',
+                    'rgba(255, 71, 87, 0.7)'
+                ],
+                borderColor: [
+                    '#00d2ff',
+                    '#00ea90',
+                    '#ff4757',
+                ],
+                borderWidth: 2,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display:false },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let value = context.raw;
+                            return value.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#a0a0b0'},
+                    grid: { color: '#3a3a55' }
+                },
+                x: {
+                    ticks: { color: '#ffffff', font: {weight: 'bold' } },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+
+    // --- Fim Bloco Grafico ---
 });
 
 const clearBtn = document.getElementById('clearBtn');
@@ -47,6 +108,11 @@ clearBtn.addEventListener('click', () => {
     resultManual.textContent = 'R$ 0,00';
     resultSelic.textContent = 'R$0,00';
     resultSavings.textContent = 'R$0,00';
+
+    if (myChart) {
+        myChart.destroy();
+        myChart = null;
+    }
 });
 
 // Novo botão Selic
