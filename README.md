@@ -13,6 +13,7 @@ Este projeto foi desenvolvido para consolidar conhecimentos práticos em **JavaS
 * **Tratamento de Erros:** Implementação de blocos `try/catch` para garantir a resiliência da aplicação caso o servidor do governo fique indisponível.
 * **Modularização:** Separação de responsabilidades utilizando `import` e `export` para isolar regras de negócio (`calculator.js`) e requisições de rede (`api.js`) da manipulação de tela (`main.js`).
 * **UI/UX e Visualização de Dados:** Refatoração da interface isolando a estrutura (HTML) da estilização (CSS) com design responsivo. Integração com a biblioteca Chart.js para renderizar gráficos de barras dinâmicos, proporcionando uma comparação visual clara entre os cenários de investimento.
+* **Tratamento de Erros e Validação:** Implementação de *Inline Validation* com JavaScript para garantir a integridade dos cálculos. O sistema previne a execução de funções com dados vazios ou negativos, fornecendo feedback visual imediato e amigável ao usuário sem bloquear a interface (evitando o uso de `alert()`).
 
 ## ⚙️ Como funciona
 

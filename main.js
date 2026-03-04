@@ -16,6 +16,15 @@ calculateBtn.addEventListener('click', async () => {
     const months = Number(document.getElementById('months').value);
     const manualRate = Number(document.getElementById('interestRate').value);
     // O Number() para garantir que o JS entenda como numero
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Validação
+    if (monthlyContribution <= 0 || months <= 0) {
+        errorMessage.style.display = 'block';
+        return; // impede o calculo de continuar
+    } else {
+        errorMessage.style.display = 'none'; // Esconder a mensagem caso esteja certa
+    }
 
     const selicAnual = await fetchSelicRate();
     const selicMensal = (Math.pow(1 + selicAnual /100, 1 / 12) -1) * 100;
@@ -104,6 +113,7 @@ clearBtn.addEventListener('click', () => {
     document.getElementById('monthlyContribution').value = '';
     document.getElementById('interestRate').value = '';
     document.getElementById('months').value = '';
+    document.getElementById('errorMessage').style.display = 'none';
 
     resultManual.textContent = 'R$ 0,00';
     resultSelic.textContent = 'R$0,00';
