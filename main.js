@@ -30,9 +30,10 @@ calculateBtn.addEventListener('click', async () => {
     const selicMensal = (Math.pow(1 + selicAnual /100, 1 / 12) -1) * 100;
     // Busca a Selic
 
-    const finalManual = calculateCompoundInterest(monthlyContribution, manualRate, months);
-    const finalSelic = calculateCompoundInterest(monthlyContribution, selicMensal, months);
-    const finalSavings = calculateCompoundInterest(monthlyContribution, 0.5, months);
+    const { finalAmount: finalManual, history: manualHistory } = calculateCompoundInterest(monthlyContribution, manualRate, months);
+    // As chaves {} para abrir o pacote e extrair o que precisa
+    const { finalAmount: finalSelic } = calculateCompoundInterest(monthlyContribution, selicMensal, months);
+    const { finalAmount: finalSavings } = calculateCompoundInterest(monthlyContribution, 0.5, months);
     // Chama a função e guarda o resultado
 
     const formatCurrency = (value) => value.toLocaleString('pt-BR', {
@@ -105,6 +106,62 @@ calculateBtn.addEventListener('click', async () => {
     });
 
     // --- Fim Bloco Grafico ---
+
+// --- Inicio Bloco Tabela ---
+const tableContainer = document.getElementById('tableContainer');
+const tableBody = document.getElementById('tableBody');
+
+// Limpeza de tabela
+tableBody.innerHTML = '';
+
+// Fazer a tabela aparecer na tela
+tableContainer.style.display = 'block';
+
+// O laço de repetição percorrendo o historico
+manualHistory.forEach((item) => {
+    // Cria uma linha virtual (tr)
+    const row = document.createElement('tr');
+
+    // Preenche as colunas na função de moeda (td)
+    row.innerHTML = `
+    <td>${item.month}</td>
+    <td>${formatCurrency(item.interestEarned)}</td>
+    <td style="color: #00ea90; font-weight: bold;">${formatCurrency(item.totalAmount)}</td>
+    `;
+
+    // Injeta a linha pronta
+    tableBody.appendChild(row);
+});
+// --- Fim Bloco Tabela ---
+
+// --- Inicio Bloco Gamificação ---
+const gamificationContainer = document.getElementById('gamificationContainer');
+const cardXP = document.getElementById('cardXP');
+const cardDux = document.getElementById('cardDux');
+const currentLevel = document.getElementById('currentLevel');
+
+// Mostra a area
+gamificationContainer.style.display = 'block';
+
+// Reseta os cartões para trancado após uma nova simulação
+cardXP.classList.add('locked');
+cardDux.classList.add('locked');
+currentLevel.textContent = "Iniciante";
+
+// O que testa o valor final
+if (finalManual >= 250000) {
+    cardXP.classList.remove('locked');
+    cardDux.classList.remove('locked');
+    currentLevel.textContent = "Membro DUX";
+    currentLevel.style.color = "#00d2ff";
+} else if (finalManual >= 50000) {
+    cardXP.classList.remove('locked');
+    currentLevel.textContent = "Investidor XP";
+    currentLevel.style.color = "#f1c40f";
+}
+// Se não antingiu o valor ele mantem o 'locked' ativo
+// --- Fim Bloco Gamificação ---
+
 });
 
 const clearBtn = document.getElementById('clearBtn');
@@ -114,6 +171,9 @@ clearBtn.addEventListener('click', () => {
     document.getElementById('interestRate').value = '';
     document.getElementById('months').value = '';
     document.getElementById('errorMessage').style.display = 'none';
+    document.getElementById('tableContainer').style.display = 'none';
+    document.getElementById('tableBody').innerHTML = '';
+    document.getElementById('gamificationContainer').style.display = 'none';
 
     resultManual.textContent = 'R$ 0,00';
     resultSelic.textContent = 'R$0,00';

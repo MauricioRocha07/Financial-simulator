@@ -14,6 +14,8 @@ Este projeto foi desenvolvido para consolidar conhecimentos práticos em **JavaS
 * **Modularização:** Separação de responsabilidades utilizando `import` e `export` para isolar regras de negócio (`calculator.js`) e requisições de rede (`api.js`) da manipulação de tela (`main.js`).
 * **UI/UX e Visualização de Dados:** Refatoração da interface isolando a estrutura (HTML) da estilização (CSS) com design responsivo. Integração com a biblioteca Chart.js para renderizar gráficos de barras dinâmicos, proporcionando uma comparação visual clara entre os cenários de investimento.
 * **Tratamento de Erros e Validação:** Implementação de *Inline Validation* com JavaScript para garantir a integridade dos cálculos. O sistema previne a execução de funções com dados vazios ou negativos, fornecendo feedback visual imediato e amigável ao usuário sem bloquear a interface (evitando o uso de `alert()`).
+* **Manipulação de DOM Avançada:** Criação dinâmica de elementos HTML (`createElement`) iterando sobre arrays de objetos extraídos da lógica financeira para construir um extrato de evolução mensal detalhado.
+* **Lógica Condicional e Gamificação:** Implementação de sistema de recompensas baseado em metas de patrimônio acumulado (Cartão XP e BRB DUX). O sistema altera classes CSS dinamicamente (`classList.add/remove`) para fornecer feedback visual de progresso ao usuário.
 
 ## ⚙️ Como funciona
 

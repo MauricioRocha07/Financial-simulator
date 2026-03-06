@@ -58,6 +58,33 @@
     <div class="chart-container" style="position: relative; height: 40vh; width: 80vw; max-width: 900px; margin-top: 40px;">
         <canvas id="myChart"></canvas>
     </div>
+
+    <div class="gamification-container" id="gamificationContainer" style="display: none;">
+        <h3>Suas Conquistas: <span id="currentLevel">Nível Inicial</span></h3>
+        <div class="cards-wrapper">
+            <div class="credit-card locked" id="cardXP">
+                <h4>Cartão XP</h4>
+                <p>Meta: R$ 50.000,00</p>
+            </div>
+            <div class="credit-card locked" id="cardDux">
+                <h4>BRB DUX</h4>
+                <p>Meta: R$ 250.000,00</p>
+            </div>
+        </div>
+    </div>
+    <div class="table-container" id="tableContainer" style="display: none;">
+        <h3>Extrato Mensal (Sua Simulação)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mês</th>
+                    <th>Juros Rendido</th>
+                    <th>Patrimônio Acumulado</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
     <script type="module" src="main.js"></script>
 </body>
 </html>
