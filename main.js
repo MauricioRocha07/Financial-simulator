@@ -11,20 +11,41 @@ let myChart = null;
 // Espera o click no botão
 calculateBtn.addEventListener('click', async () => {
 
+    // Utiliza como texto digitado para verificar erros
+    const inputContribution = document.getElementById('monthlyContribution').value;
+    const inputMonths = document.getElementById('months').value;
+    const inputRate = document.getElementById('interestRate').value;
+
     // Pega os numeros digitados pelo usuario
-    const monthlyContribution = Number(document.getElementById('monthlyContribution').value);
-    const months = Number(document.getElementById('months').value);
-    const manualRate = Number(document.getElementById('interestRate').value);
+    const monthlyContribution = Number(inputContribution);
+    const months = Number(inputMonths);
+    const manualRate = Number(inputRate);
     // O Number() para garantir que o JS entenda como numero
+    
     const errorMessage = document.getElementById('errorMessage');
 
     // Validação
-    if (monthlyContribution <= 0 || months <= 0) {
+    if (inputContribution === "" || inputMonths === "" || inputRate === "" || monthlyContribution <= 0 || months <= 0 || manualRate <= 0) {
+        errorMessage.textContent = "Por favor, preencha todos os campos com valores maiores que zero.";
         errorMessage.style.display = 'block';
         return; // impede o calculo de continuar
-    } else {
-        errorMessage.style.display = 'none'; // Esconder a mensagem caso esteja certa
-    }
+    } // Verifica se tem algum campo vazio ou zerado.
+
+    else if (manualRate > 10) {
+        errorMessage.textContent = "Calma lá, investidor! Taxas acima de 10% ao mês são irreais no mercado. Revise o valor.";
+        errorMessage.style.display = 'block';
+        return; // Para a execução
+    } // Trava da Taxa de Juros
+
+    else if (months > 600) {
+        errorMessage.textContent = "Simulação acima de 50 anos são muito longas. Tente um prazo menor.";
+        errorMessage.style.display = 'block';
+        return; // Para a execução
+    } // Trava do Tempo
+
+    else {
+        errorMessage.style.display = 'none';
+    } // Se passou por tudo a mensagem esconde
 
     const selicAnual = await fetchSelicRate();
     const selicMensal = (Math.pow(1 + selicAnual /100, 1 / 12) -1) * 100;

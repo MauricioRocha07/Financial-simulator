@@ -10,10 +10,10 @@ Este projeto foi desenvolvido para consolidar conhecimentos práticos em **JavaS
 * **JavaScript (ES6+):** Lógica matemática de juros compostos utilizando laços de repetição (`for`).
 * **Consumo de API (Fetch/Async/Await):** Integração real com a API pública do Banco Central do Brasil (SGS) para capturar a taxa Selic anual atualizada e convertê-la matematicamente para a taxa mensal correspondente.
 * **Análise Comparativa Dinâmica:** Implementação de lógica para renderização simultânea de múltiplos cenários de investimento (Taxa Personalizada, Tesouro Selic e Poupança). O JavaScript manipula o DOM de forma assíncrona para calcular e exibir os três resultados lado a lado, evidenciando o impacto dos juros compostos no longo prazo.
-* **Tratamento de Erros:** Implementação de blocos `try/catch` para garantir a resiliência da aplicação caso o servidor do governo fique indisponível.
+* **Tratamento de Erros (Resiliência):** Implementação de blocos `try/catch` para garantir a resiliência da aplicação caso o servidor do governo fique indisponível.
 * **Modularização:** Separação de responsabilidades utilizando `import` e `export` para isolar regras de negócio (`calculator.js`) e requisições de rede (`api.js`) da manipulação de tela (`main.js`).
 * **UI/UX e Visualização de Dados:** Refatoração da interface isolando a estrutura (HTML) da estilização (CSS) com design responsivo. Integração com a biblioteca Chart.js para renderizar gráficos de barras dinâmicos, proporcionando uma comparação visual clara entre os cenários de investimento.
-* **Tratamento de Erros e Validação:** Implementação de *Inline Validation* com JavaScript para garantir a integridade dos cálculos. O sistema previne a execução de funções com dados vazios ou negativos, fornecendo feedback visual imediato e amigável ao usuário sem bloquear a interface (evitando o uso de `alert()`).
+* **Tratamento de Erros e Validação (Prova de Balas):** Implementação de *Inline Validation* com JavaScript para garantir a integridade dos cálculos. O sistema previne a execução com dados vazios ou negativos e aplica regras de negócio reais (barrando taxas acima de 10% a.m. ou períodos acima de 50 anos), fornecendo feedback visual imediato e amigável ao usuário.
 * **Manipulação de DOM Avançada:** Criação dinâmica de elementos HTML (`createElement`) iterando sobre arrays de objetos extraídos da lógica financeira para construir um extrato de evolução mensal detalhado.
 * **Lógica Condicional e Gamificação:** Implementação de sistema de recompensas baseado em metas de patrimônio acumulado (Cartão XP e BRB DUX). O sistema altera classes CSS dinamicamente (`classList.add/remove`) para fornecer feedback visual de progresso ao usuário.
 
@@ -24,7 +24,7 @@ O usuário insere três dados fundamentais:
 2. **Taxa de Juros:** A rentabilidade mensal esperada (podendo ser preenchida manualmente ou puxada automaticamente via Banco Central).
 3. **Tempo:** O período da simulação em meses.
 
-O sistema captura esses eventos via DOM, processa o cálculo de juros sobre juros mês a mês e retorna o valor final formatado nativamente para a moeda brasileira (BRL).
+O sistema captura esses eventos via DOM, processa o cálculo matemático validando as regras de negócio e atualiza a interface exibindo: os resultados finais formatados em BRL, um gráfico comparativo, o extrato mensal detalhado em tabela e o nível de gamificação atingido.
 
 ## 👨‍💻 Autor
 Estudante de Análise e Desenvolvimento de Sistemas (ADS), em transição de carreira, apaixonado por resolver problemas de negócios através da tecnologia e automação.
